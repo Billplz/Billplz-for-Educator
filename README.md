@@ -9,7 +9,7 @@ Accept payment using Billplz by using this plugin.
 
 ## Installation
 
--  Copy all files to installation educator directory. Usually located at:
+-  Copy all files (exclude: README.md and educator.zip) to installation educator directory. Usually located at:
    ```
     /wp-content/plugins/educator
    ```
