@@ -124,20 +124,20 @@ class Edr_Gateway_Billplz extends Edr_Gateway_Base
         $user_name = empty($user_name) ? $user->user_login : $user_name;
 
         $parameter = array(
-                'collection_id' => $collection_id,
-                'email' => sanitize_email($user->user_email),
-                /* 'mobile'=> '', No mobile schema made in educator*/
-                'name' => $user_name,
-                'amount' => strval($payment->amount * 100),
-                'callback_url' => Edr_RequestDispatcher::get_url('billplzcallback'),
-                'description' => mb_substr($post->post_title, 0, 199)
-            );
-            $optional = array(
-                'redirect_url' => $return_url,
-                /* Just reserve reference_1 for premium usage */
-                'reference_2_label' => 'ID',
-                'reference_2' => intval($payment->ID)
-            );
+            'collection_id' => $collection_id,
+            'email' => sanitize_email($user->user_email),
+            /* 'mobile'=> '', No mobile schema made in educator*/
+            'name' => $user_name,
+            'amount' => strval($payment->amount * 100),
+            'callback_url' => Edr_RequestDispatcher::get_url('billplzcallback'),
+            'description' => mb_substr($post->post_title, 0, 199)
+        );
+        $optional = array(
+            'redirect_url' => $return_url,
+            /* Just reserve reference_1 for premium usage */
+            'reference_2_label' => 'ID',
+            'reference_2' => intval($payment->ID)
+        );
 
         $connnect = (new EducatorBillplzWPConnect($api_key))->detectMode();
         $billplz = new EducatorBillplzAPI($connnect);
