@@ -77,6 +77,18 @@ class Edr_Gateway_Billplz extends Edr_Gateway_Base
     }
 
     /**
+     * Fetch user mobile number from WooCommerce
+     */
+    public function getUserMobile($user_id = null)
+    {
+        if ($user_id === null) {
+                return '';
+        }
+
+        return get_user_meta($user_id, 'billing_phone', true);
+    }
+
+    /**
      * Output the form to the step 2 (pay page) of the payment page.
      */
     public function pay_page()
@@ -126,7 +138,7 @@ class Edr_Gateway_Billplz extends Edr_Gateway_Base
         $parameter = array(
             'collection_id' => $collection_id,
             'email' => sanitize_email($user->user_email),
-            /* 'mobile'=> '', No mobile schema made in educator*/
+            'mobile'=> $this->getUserMobile($user->ID),
             'name' => $user_name,
             'amount' => strval($payment->amount * 100),
             'callback_url' => Edr_RequestDispatcher::get_url('billplzcallback'),
