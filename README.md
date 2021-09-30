@@ -1,4 +1,5 @@
 # Billplz for Educator
+*This project is no longer supported.*
 
 Accept payment using Billplz by using this plugin.
 
